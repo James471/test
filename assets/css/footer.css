@@ -1,0 +1,32 @@
+---
+---
+footer {
+    text-align: center;
+    font-family: "{{site.footerFont}}";
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 14rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+    margin-bottom: 0px;
+    color: {{site.footerFontColor}};
+}
+
+.textLink {
+    visited: {{site.footerFontColor}};
+    color: {{site.footerFontColor}};
+}
+
+.bgImgFooter {
+    background-image: url('{{site.footerBackgroundImage | prepend: site.baseurl}}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    padding: 0px;
+}
+
+.bgColorFooter {
+    background-color: {{site.footerBackgroundColor}};
+}

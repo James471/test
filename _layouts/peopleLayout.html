@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{site.title}}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{'/assets/css/animation.css'  | prepend: site.baseurl}}">
+        <style>
+
+            #page-container {
+                position: relative;
+                min-height: 100vh;
+            }
+
+            #content-wrap {
+                padding-bottom: 14rem;
+            }
+
+            .pageFont {
+                font-family: "{{page.font}}";
+                color: {{page.fontColor}};
+            }
+
+            .peopleBgImg {
+                background-image: url('{{page.backgroundImage | prepend: site.baseurl}}');
+                background-position: cover;
+            }
+
+            .peopleBgColor {
+                background-color: {{page.backgroundColor}};
+            }
+
+            body {
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .peopleRow {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .peopleColumn {
+                flex: 90%;
+            }
+
+            .personImg {
+                height: auto;
+                width: 90%;
+            }
+
+            @media screen and (min-width: 650px) {
+                .peopleColumn {
+                    flex: 45%;
+                }
+            }
+
+            @media screen and (min-width: 1200px) {
+                .peopleColumn {
+                    flex: 33%;
+                }
+
+                .personImg {
+                    height: 550px;
+                }
+
+            }
+
+            .peopleColumn {
+                border-style: solid;
+                border-width: 1px;
+                margin-bottom: 10px;
+                border-collapse: collapse;
+                border-color: {{page.fontColor}};
+                padding-left: 6px;
+                margin-left: 4px;
+                margin-right: 4px;
+                padding-right: 4px;
+                width: 95%;
+            }
+
+            .bgImgPeopleAbout {
+                background-image: url('{{page.peopleAboutBackgroundImg | prepend: site.baseurl}}');
+                background-repeat: no-repeat;
+                background-size: cover;
+                width: 100%;
+                padding: 0px;
+            }
+
+            .bgColorPeopleAbout {
+                background-color: {{page.descBackgroundColor}};
+            }
+
+            .peopleAbout {
+                word-wrap: normal;
+                text-align: center;
+                font-family: "{{page.peopleAboutFont}}";
+                color: {{page.peopleAboutFontColor}};
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+        </style>
+    </head>
+    <body style="background-color: {{page.backgroundColor}};">
+        <div id="page-container">
+            <div id="content-wrap">
+                {% include header.html %}
+                {% if page.backgroundImage != null %}
+                    {% assign cls = "peopleBgImg" %}
+                {% else %}
+                    {% assign cls = "peopleBgColor" %}
+                {% endif %}
+                {% if page.peopleAboutBackgroundImg != null %}
+                    {% assign cls2 = "bgImgPeopleAbout" %}
+                {% else %}
+                    {% assign cls2 = "bgColorPeopleAbout" %}
+                {% endif %}
+                <div class={{cls2}} style="margin-bottom: 8px;">
+                    <div class="peopleAbout">
+                        <br>
+                        <br>
+                        {{content}}
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <section class="animated1 fadeIn pageFont {{cls}} peopleRow">
+                    {% for person in site.data.people %}
+                        <article class="peopleColumn">
+                            <div style="display: flex; justify-content: center; padding-top: 10px;">
+                                <img src="{{person.imageURL | prepend: site.baseurl}}" class="personImg">
+                            </div>
+                            <div style="text-align: center;">
+                                <p>Name: {{person.name}}</p>
+                                <p>Role: {{person.role}}</p>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </section>
+            </div>
+            {% include footer.html %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{site.title}}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            
+            #page-container {
+                position: relative;
+                min-height: 100vh;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+            }
+
+            #content-wrap {
+                margin: 0;
+                padding-bottom: 14rem;
+                width: 100%;
+            }
+
+            .eventBackgroundImg {
+                background-image: url('{{site.eventPageBackgroundImage | prepend: site.baseurl}}');
+            }
+
+            .eventBackgroundColor {
+                background-color: {{site.eventPageBackgroundColor}};
+            }
+
+            .content {
+                font-family: "{{site.eventPageFont}}";
+                color: {{site.eventPageOtherFontColor}};
+            }
+
+            h1.content {
+                font-family: "{{site.eventPageHeadingFont}}";
+                color: {{site.eventPageHeadingFontColor}}
+            }
+
+            table, th, td {
+                border: 1px solid;
+                border-color: {{site.eventPageHeadingFontColor}};
+                font-size: 1em;
+                border-collapse: collapse;
+                padding: 8px;
+            }
+
+            @media screen and (max-width: 600px) {
+
+                body .eventPoster {
+                    width: 90%;
+                    height: 60%;
+                    padding-right: 0px;
+                }
+
+                .responsiveEventContent {
+                    display: table-row;
+                }
+
+                .eventPosterDiv {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                table, th, td {
+                    font-size: 0.9em;
+                    padding: 7px;
+                }
+
+                .eventDesc {
+                    font-size: 0.9 em;
+                }
+
+            }
+
+            .eventPoster {
+                float: left;
+                width: 40%;
+                height: 40%;
+                padding-right: 10px;
+                display: block;
+            }
+
+            .event {
+                display: table-row;
+            }
+
+            body {
+                padding: 0;
+                margin: 0;
+            }
+
+            .eventContentDiv {
+                margin: 4px;
+                padding: 6px;
+            }
+
+        </style>
+    </head>
+    {% if site.eventPageBackgroundImage != null %}
+        {% assign cls = "eventBackgroudImg" %}
+    {% else %}
+        {% assign cls = "eventBackgroundColor" %}
+    {% endif %}
+    <body class={{cls}}>
+        <div id="page-container">
+            <div id="content-wrap">
+            {% include header.html %}
+            <section class="content event">
+                <div class="eventContentDiv">
+                    <div class="eventPosterDiv">
+                        <img src="{{page.poster | prepend: site.baseurl}}" class="eventPoster">
+                    </div>
+                    <div class="responsiveEventContent">
+                        <div style="font-size: 1em;">
+                            {{content}}
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </div>
+            <br>
+        {% include footer.html %}
+        </div>
+    </body>
+</html>

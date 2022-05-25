@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="{{'/assets/css/footer.css' | prepend: site.baseurl }}">
+{% if site.footerBackgroundImage != null %}
+    {% assign cls="bgImgFooter" %}
+{% else %}
+    {% assign cls="bgColorFooter" %}
+{% endif %}
+<section>
+    <footer class={{cls}} id="siteFooter">
+        <br>
+        <div style="height: 0.6rem;">
+            Maintained by 
+            <div class="grow" style="display: inline-block;">
+                <a href="{{'index.html' | prepend: site.baseurl }}" class="textLink">{{site.maintainedBy}}</a>
+            </div>
+        </div>
+        <br>
+        <div style="height: 0.6rem;">
+            Theme built by 
+            <span class="grow" style="display: inline-block;">
+                <a href="https://github.com/James471" class="textLink">James</a>
+            </span>
+            and 
+            <span class="grow" style="display: inline-block;">
+                <a href="https://github.com/prajakta1-618" class="textLink">Prajakta</a>
+            </span>
+        </div>
+        <br>
+        <div style="height: 0.6rem;">
+            Website built by 
+            <div class="grow" style="display: inline-block;">
+                <a href="{{site.builtByURL}}" class="textLink">{{site.builtBy}}</a>
+            </div>
+        </div>
+        <br>
+        <div style="height: 0.6rem;">
+            Hosted on Github Pages.
+        </div>
+        <br>
+        {% include socialLinks.html %}
+    </footer>
+</section>
